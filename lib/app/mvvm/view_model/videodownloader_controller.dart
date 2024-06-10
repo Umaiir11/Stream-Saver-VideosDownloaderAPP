@@ -6,8 +6,8 @@ class VideodownloaderController{
   bool fieldsValidate = false;
   TextEditingController search_controller = TextEditingController();
   String? youtubeUrlValidator(String? value) {
-    RegExp youtubeUrlRegex = RegExp(
-        r'^https?://(?:www\.|m\.)?youtube\.com/(?:watch\?v=|embed/|v/)([\w-]+)');
+    RegExp youtubeUrlRegex = RegExp(r'^https?://(?:www\.|m\.)?(?:youtube\.com/(?:watch\?v=|embed/|v/)|youtu\.be/)([\w-]+)');
+
 
 
     if (value == null || value.isEmpty) {
