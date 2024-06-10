@@ -1,6 +1,9 @@
 import 'dart:io';
 
 import 'package:android_intent_plus/android_intent.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 
@@ -38,13 +41,17 @@ class VideoHelper {
   }
 
   static Future<void> launchInExternalPlayer(String url) async {
-    if (Platform.isAndroid) {
-      AndroidIntent intent = AndroidIntent(
-        action: 'action_view',
-        data: url,
-        type: "video/*",
-      );
-      await intent.launch();
-    }
+    Fluttertoast.showToast(
+      msg: "To view this downloaded video, please check your gallery",
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.SNACKBAR,
+      timeInSecForIosWeb: 3,
+      backgroundColor: Colors.blueAccent,
+      textColor: Colors.white,
+      fontSize: 14.sp,
+      webShowClose: true,
+      webBgColor: "#333333",
+    );
+
   }
 }
