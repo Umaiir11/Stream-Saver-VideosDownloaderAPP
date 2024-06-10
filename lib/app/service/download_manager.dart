@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 
 import 'youtube_service.dart';
-
 
 final yt = YoutubeExplode();
 var controller;
@@ -45,22 +45,20 @@ downloadPlaylistVideo(Video videoD, index, quilityNo) async {
     var manifest = await yt.videos.streamsClient.getManifest(videoD.url);
     var video = manifest.muxed.elementAt(quilityNo);
     var fileName =
-    '${videoD.title}${DateTime.now().millisecondsSinceEpoch}.${video.container.name.toString()}'
-        .replaceAll(r'\', '')
-        .replaceAll('/', '')
-        .replaceAll('*', '')
-        .replaceAll(':', '')
-        .replaceAll('?', '')
-        .replaceAll('"', '')
-        .replaceAll('<', '')
-        .replaceAll('>', '')
-        .replaceAll('|', '');
+        '${videoD.title}${DateTime.now().millisecondsSinceEpoch}.${video.container.name.toString()}'
+            .replaceAll(r'\', '')
+            .replaceAll('/', '')
+            .replaceAll('*', '')
+            .replaceAll(':', '')
+            .replaceAll('?', '')
+            .replaceAll('"', '')
+            .replaceAll('<', '')
+            .replaceAll('>', '')
+            .replaceAll('|', '');
     var vidStream = yt.videos.streamsClient.get(video);
-    if ((await requestPermission(Permission.videos) &&
-        await requestPermission(Permission.audio)) ||
+    if ((await requestPermission(Permission.videos) && await requestPermission(Permission.audio)) ||
         await requestPermission(Permission.storage)) {
-      Directory dir =
-      Directory('/storage/emulated/0/Download/Stream Saver');
+      Directory dir = await getApplicationSupportDirectory();
 
       if (!dir.existsSync()) {
         dir.createSync(recursive: true);

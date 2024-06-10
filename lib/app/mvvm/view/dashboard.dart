@@ -1,20 +1,21 @@
-import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'downloads_view.dart';
 import 'home_view.dart';
 import 'video_view.dart';
 
-
 class DashboardView extends StatefulWidget {
+  const DashboardView({super.key});
+
   @override
   _DashboardViewState createState() => _DashboardViewState();
 }
 
 class _DashboardViewState extends State<DashboardView> {
   int _page = 1; // Set initial index
-  GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+  final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   late PageController _pageController;
 
   @override
@@ -47,7 +48,7 @@ class _DashboardViewState extends State<DashboardView> {
           buttonBackgroundColor: Colors.grey.shade300,
           backgroundColor: Colors.lightBlueAccent,
           animationCurve: Curves.easeInOut,
-          animationDuration: Duration(milliseconds: 300),
+          animationDuration: const Duration(milliseconds: 300),
           onTap: (index) {
             if (index != _page) {
               setState(() {
@@ -55,7 +56,7 @@ class _DashboardViewState extends State<DashboardView> {
               });
               _pageController.animateToPage(
                 index,
-                duration: Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
               );
             }
@@ -63,7 +64,7 @@ class _DashboardViewState extends State<DashboardView> {
           letIndexChange: (index) => true,
         ),
         body: PageView(
-          physics: NeverScrollableScrollPhysics(), // Disable scrolling
+          physics: const NeverScrollableScrollPhysics(), // Disable scrolling
           controller: _pageController,
           onPageChanged: (index) {
             setState(() {
@@ -72,10 +73,10 @@ class _DashboardViewState extends State<DashboardView> {
           },
           children: <Widget>[
             // Pages corresponding to each icon
-            VideoDownloadView(),
-            HomeView(),
-            DownloadsView(),
-          ].where((widget) => widget != null).toList(), // Exclude null widgets
+            const VideoDownloadView(),
+            const HomeView(),
+            const DownloadsView(),
+          ].toList(), // Exclude null widgets
         ),
       ),
     );

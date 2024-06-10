@@ -1,9 +1,5 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../configs/app_textStyles.dart';
@@ -11,7 +7,7 @@ import '../../service/video_helper.dart';
 import '../../widgets/custom_appbar.dart';
 
 class DownloadsView extends StatefulWidget {
-  const DownloadsView({Key? key}) : super(key: key);
+  const DownloadsView({super.key});
 
   @override
   State<DownloadsView> createState() => _DownloadsViewState();
@@ -56,7 +52,8 @@ class _DownloadsViewState extends State<DownloadsView> {
                                 child: Card(
                                   child: ListTile(
                                     onTap: () {
-                                      VideoHelper.launchInExternalPlayer(snapshot.data!.elementAt(index).path);
+                                      VideoHelper.launchInExternalPlayer(
+                                          snapshot.data!.elementAt(index).path);
                                     },
                                     trailing: CircleAvatar(
                                       maxRadius: 12.h,

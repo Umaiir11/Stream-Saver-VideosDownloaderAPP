@@ -1,19 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
-
 
 import '../../configs/app_routes.dart';
 import '../../configs/app_textStyles.dart';
 import '../../widgets/custom_appbar.dart';
-import 'downloads_view.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({super.key});
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -32,8 +28,6 @@ class _HomeViewState extends State<HomeView> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-      
-      
               Center(
                 child: SizedBox(
                   width: 50.h, // Adjust width and height according to your animation size
@@ -92,19 +86,17 @@ class _HomeViewState extends State<HomeView> {
       onTap: () {
         switch (id) {
           case 1:
-
             Get.toNamed(Routes.videoDownload);
             break;
           case 2:
             Get.toNamed(Routes.playListDownload);
-
 
             break;
           case 3:
             Get.toNamed(Routes.downloads);
 
             break;
-            case 4:
+          case 4:
             break;
           default:
             break;
@@ -121,7 +113,7 @@ class _HomeViewState extends State<HomeView> {
               color: primaryColor.withOpacity(0.5),
               spreadRadius: 2,
               blurRadius: 7,
-              offset: Offset(0, 3),
+              offset: const Offset(0, 3),
             ),
           ],
         ),
@@ -136,7 +128,7 @@ class _HomeViewState extends State<HomeView> {
             Text(
               title,
               textAlign: TextAlign.center,
-              style: AppTextStyles.customText16(color: Colors.white,fontWeight: FontWeight.bold),
+              style: AppTextStyles.customText16(color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ],
         ),
